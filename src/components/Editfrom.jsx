@@ -8,32 +8,40 @@ const initState = {
   description: "",
 };
 
-function Add_form({ close }) {
+function Editfrom({post_Id}) {
   const [formData, setFormData] = useState(initState);
+
+
+  const result = Object.entries(formData)
+  .filter(([key, value]) => value !== "")
+  .reduce((acc, [key, value]) => {
+    acc[key] = value;
+    return acc;
+  }, {});
 
 
   // Post request FE to DealersModel
 
   const handle_post_submiting_from = async () => {
-    if(formData.description !== ""  && formData.task !== ""){
+  
 
-        try {
-            let res = await axios.post(
-                `https://koder-troop-server.vercel.app/todo/add`,
-                formData
-                );
-                
-                alert(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }else{
-            alert("Fill add details.");
-
-        }
+    try {
+        let res = await axios.put(
+          `https://koder-troop-server.vercel.app/todo/${post_Id}`,
+          result
+        );
+      
+  
+        alert(res.data);
+        window.location.reload(false);
+      } catch (err) {
+        console.log(err);
+      }
+ 
 
         
-        close()
+  
+
   };
 
   return (
@@ -42,8 +50,7 @@ function Add_form({ close }) {
         <div className="input_form" style={{
           marginTop:"20px"
         }}>
-
-<FormLabel>Task</FormLabel>
+          <FormLabel>Edit Task</FormLabel>
           <Input
             placeholder={"Enter Task"}
             type="text"
@@ -54,7 +61,7 @@ function Add_form({ close }) {
               border:"2px solid black"
              }}
           />
-          <FormLabel>Description</FormLabel>
+          <FormLabel> Edit Description</FormLabel>
 
           <Input
             placeholder={"Enter Description"}
@@ -69,11 +76,11 @@ function Add_form({ close }) {
              }}
           />
 
-          <Button className="shareButton" colorScheme="whatsapp" onClick={handle_post_submiting_from}> Submit </Button>
+          <Button colorScheme="whatsapp" onClick={handle_post_submiting_from}> Submit </Button>
         </div>
       </div>
     </div>
   );
 }
 
-export default Add_form;
+export default Editfrom;

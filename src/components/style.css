@@ -1,0 +1,51 @@
+.parentBox{
+
+
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    text-align: center;
+    margin: auto;
+   gap: 1em;
+
+   padding: 3em;
+
+}
+
+.card{
+border-radius: 10px;
+width: 90%;
+margin: auto;
+background-color: rgb(180, 233, 233);
+text-align: left;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: rgb(0, 0, 0);
+height: 5em;
+padding: 0.5em;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+/* padding-top: 20px; */
+}
+
+.cardicon{
+    display: flex;
+    gap: 10px;
+    float: right;
+}
+
+.titlename{
+    color: rgb(180, 88, 88);
+}
+
+#topsection{
+    display: flex;
+    gap: 1em;
+    text-align: center;
+    margin: auto;
+   padding: 1em;
+}
+
+.heading{
+    text-align: center;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: xx-large;
+padding: 1em;
+}
