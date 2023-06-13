@@ -15,7 +15,7 @@
 border-radius: 10px;
 width: 90%;
 margin: auto;
-background-color: rgb(180, 233, 233);
+background-color: rgb(189, 210, 210);
 text-align: left;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 color: rgb(0, 0, 0);
@@ -57,31 +57,31 @@ padding: 1em;
 
 
 .QA{
-    border-radius: 1em;
+    border-radius: 0.5em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(223, 187, 140);
+    background-color: rgb(213, 194, 168);
     height: auto;
 }
 .DONE{
-    border-radius: 1em;
+    border-radius: 0.5em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(144, 216, 168);
+    background-color: rgb(177, 221, 192);
     height: auto;
 
 }
 
 .PROGRESS{
-    border-radius: 1em;
+    border-radius: 0.5em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(198, 186, 226);
+    background-color: rgb(204, 196, 222);
     height: auto;
 
 }
 
 .TODO{
-    border-radius: 1em;
+    border-radius: 0.5em;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(171, 202, 192);
+    background-color: rgb(202, 234, 223);
     height: auto;
 
 }
