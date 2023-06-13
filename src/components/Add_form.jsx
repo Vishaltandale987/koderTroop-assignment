@@ -1,49 +1,47 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Button, FormLabel, Input } from "@chakra-ui/react";
 import axios from "axios";
-
 
 const initState = {
   task: "",
   description: "",
+
 };
 
 function Add_form({ close }) {
   const [formData, setFormData] = useState(initState);
 
-
   // Post request FE to DealersModel
 
   const handle_post_submiting_from = async () => {
-    if(formData.description !== ""  && formData.task !== ""){
+    if (formData.description !== "" && formData.task !== "") {
+      try {
+        let res = await axios.post(
+          `https://kodertroop-server.onrender.com/todo/add`,
+          formData
+        );
 
-        try {
-            let res = await axios.post(
-                `https://koder-troop-server.vercel.app/todo/add`,
-                formData
-                );
-                
-                alert(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }else{
-            alert("Fill add details.");
+        alert(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert("Fill all details.");
+    }
 
-        }
-
-        
-        close()
+    close();
   };
 
   return (
     <div className="share">
       <div className="shareWrapper">
-        <div className="input_form" style={{
-          marginTop:"20px"
-        }}>
-
-<FormLabel>Task</FormLabel>
+        <div
+          className="input_form"
+          style={{
+            marginTop: "20px",
+          }}
+        >
+          <FormLabel>Task</FormLabel>
           <Input
             placeholder={"Enter Task"}
             type="text"
@@ -51,8 +49,8 @@ function Add_form({ close }) {
             required
             mb={10}
             style={{
-              border:"2px solid black"
-             }}
+              border: "2px solid black",
+            }}
           />
           <FormLabel>Description</FormLabel>
 
@@ -65,11 +63,18 @@ function Add_form({ close }) {
             required
             mb={10}
             style={{
-              border:"2px solid black"
-             }}
+              border: "2px solid black",
+            }}
           />
 
-          <Button className="shareButton" colorScheme="whatsapp" onClick={handle_post_submiting_from}> Submit </Button>
+          <Button
+            className="shareButton"
+            colorScheme="whatsapp"
+            onClick={handle_post_submiting_from}
+          >
+            {" "}
+            Submit{" "}
+          </Button>
         </div>
       </div>
     </div>

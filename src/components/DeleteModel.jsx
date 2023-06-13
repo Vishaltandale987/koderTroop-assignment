@@ -21,7 +21,7 @@ function DeleteModel({post_Id}) {
   const handleDelete = async () => {
     try {
         const res = await axios.delete(
-          `https://koder-troop-server.vercel.app/todo/delete/${post_Id}`
+          `https://kodertroop-server.onrender.com/todo/delete/${post_Id}`
         );
         alert(res.data);
       } catch (error) {

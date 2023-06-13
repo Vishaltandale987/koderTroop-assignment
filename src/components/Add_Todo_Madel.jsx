@@ -13,21 +13,33 @@ import {
   InputGroup,
   InputLeftElement,
   IconButton,
+  Select,
 } from "@chakra-ui/react";
 import Add_form from "./Add_form";
 import { DeleteIcon, PhoneIcon, SearchIcon } from "@chakra-ui/icons";
 import axios from "axios";
 
 import "./style.css";
-import Admin_Edit from "./Admin_Edit";
-import DeleteModel from "./DeleteModel";
+import DefaultInventry from "./DefaultInventry";
 function Add_Todo_Madel() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [getsearchData, setgetsearchData] = useState();
   const [getdefaultData, setgetdefaultData] = useState();
   const [search, setsearch] = useState("");
 
+  let Default_TODO = getdefaultData?.filter((e) => e.important === "TODO");
+  let Default_DONE = getdefaultData?.filter((e) => e.important === "DONE");
+  let Default_IN_PROGRESS = getdefaultData?.filter(
+    (e) => e.important === "IN PROGRESS"
+  );
+  let Default_IN_QA = getdefaultData?.filter((e) => e.important === "IN QA");
 
+  let Search_TODO = getsearchData?.filter((e) => e.important === "TODO");
+  let Search_DONE = getsearchData?.filter((e) => e.important === "DONE");
+  let Search_IN_PROGRESS = getsearchData?.filter(
+    (e) => e.important === "IN PROGRESS"
+  );
+  let Search_IN_QA = getsearchData?.filter((e) => e.important === "IN QA");
 
   useEffect(() => {
     getdefaultdata();
@@ -36,7 +48,7 @@ function Add_Todo_Madel() {
   const getsearchdata = async () => {
     try {
       const searchres = await axios(
-        `https://koder-troop-server.vercel.app/todo/search/${search}`
+        `https://kodertroop-server.onrender.com/todo/search/${search}`
       );
 
       setgetsearchData(searchres.data);
@@ -51,7 +63,7 @@ function Add_Todo_Madel() {
 
   const getdefaultdata = async () => {
     try {
-      const res = await axios(`https://koder-troop-server.vercel.app/todo`);
+      const res = await axios(`https://kodertroop-server.onrender.com/todo`);
       setgetdefaultData(res.data);
     } catch (error) {
       console.log(error);
@@ -60,13 +72,11 @@ function Add_Todo_Madel() {
 
   return (
     <div>
-
       <div className="heading">
         <h1> TO-DO Application </h1>
       </div>
       <div id="topsection">
-        
-        <Button onClick={onOpen} colorScheme="whatsapp" ml={10} >
+        <Button onClick={onOpen} colorScheme="whatsapp" ml={10}>
           Create TODO
         </Button>
 
@@ -79,14 +89,12 @@ function Add_Todo_Madel() {
             placeholder="Search Task"
             onChange={(e) => setsearch(e.target.value)}
             w={500}
-           style={{
-            border:"2px solid black"
-           }}
+            style={{
+              border: "2px solid black",
+            }}
           />
         </InputGroup>
-
       </div>
-
 
       <div
         style={{
@@ -95,58 +103,73 @@ function Add_Todo_Madel() {
       >
         {search !== "" ? (
           <div className="parentBox">
-            {getsearchData?.map((el, index) => {
-              return (
-                <div key={index} className="card">
-                  <div className="cardicon">
-                    <Admin_Edit post_Id={el?._id} />
-                    <DeleteModel post_Id={el?._id} />
-                  </div>
+              <div className="TODO">
+              <p className="titlename" >TODO -  {Search_TODO?.length}</p>
 
-                  <p>
-                  
-                  Task No - <span className="titlename"> {index + 1}</span> 
-                  </p>
-                  <p>
-                  
-                  Task - <span className="titlename"> {el.task}</span> 
-                  </p>
-                  <p>
-                  Discription - <span className="titlename"> {el.description} </span>
-                    
-                  </p>
-                </div>
-              );
-            })}
+              {Search_TODO?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
+
+            <div className="PROGRESS">
+              <p className="titlename" >IN PROGRESS - {Search_IN_PROGRESS?.length}</p>
+
+              {Search_IN_PROGRESS?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
+
+            <div className="QA">
+              <p className="titlename" >IN QA - {Search_IN_QA?.length}</p>
+
+              {Search_IN_QA?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
+
+            <div className="DONE">
+              <p className="titlename" >DONE- {Search_DONE?.length}</p>
+
+              {Search_DONE?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
           </div>
         ) : (
           <div className="parentBox">
-            {getdefaultData?.map((el, index) => {
-              return (
-                <div key={index} className="card">
-                  <div className="cardicon">
-                    <Admin_Edit post_Id={el?._id} />
+            <div className="TODO">
+              <p className="titlename" >TODO -  {Default_TODO?.length}</p>
 
-                    <DeleteModel post_Id={el?._id} />
-                  </div>
 
-                  <p>
-                  
-                  Task No - <span className="titlename"> {index + 1}</span> 
-                  </p>
+              {Default_TODO?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            
+            </div>
 
-                  <p>
-                  
-                  Task - <span className="titlename"> {el.task}</span> 
-                  </p>
-                  <p>
-                  Discription -
-                    <span className="titlename">{el.description} </span>
-                    
-                  </p>
-                </div>
-              );
-            })}
+            <div className="PROGRESS">
+              <p className="titlename" >IN PROGRESS - {Default_IN_PROGRESS?.length}</p>
+
+              {Default_IN_PROGRESS?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
+
+            <div className="QA">
+              <p className="titlename" >IN QA - {Default_IN_QA?.length}</p>
+
+              {Default_IN_QA?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
+
+            <div className="DONE">
+              <p className="titlename" >DONE- {Default_DONE?.length}</p>
+
+              {Default_DONE?.map((el, index) => {
+                return <DefaultInventry key={index} el={el} index={index} />;
+              })}
+            </div>
           </div>
         )}
       </div>

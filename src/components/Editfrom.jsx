@@ -27,7 +27,7 @@ function Editfrom({post_Id}) {
 
     try {
         let res = await axios.put(
-          `https://koder-troop-server.vercel.app/todo/${post_Id}`,
+          `https://kodertroop-server.onrender.com/todo/${post_Id}`,
           result
         );
       

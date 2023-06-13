@@ -19,10 +19,12 @@ background-color: rgb(180, 233, 233);
 text-align: left;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 color: rgb(0, 0, 0);
-height: 5em;
+height: auto;
 padding: 0.5em;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-/* padding-top: 20px; */
+margin-top: 1em;
+margin-bottom: 1em;
+
 }
 
 .cardicon{
@@ -32,7 +34,10 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .titlename{
-    color: rgb(180, 88, 88);
+    color: rgb(154, 49, 49);
+font-weight: bold;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 #topsection{
@@ -48,4 +53,35 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: xx-large;
 padding: 1em;
+}
+
+
+.QA{
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(223, 187, 140);
+    height: auto;
+}
+.DONE{
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(144, 216, 168);
+    height: auto;
+
+}
+
+.PROGRESS{
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(198, 186, 226);
+    height: auto;
+
+}
+
+.TODO{
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(171, 202, 192);
+    height: auto;
+
 }
