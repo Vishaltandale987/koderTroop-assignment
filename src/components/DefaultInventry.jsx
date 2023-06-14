@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Admin_Edit from "./Admin_Edit";
 import DeleteModel from "./DeleteModel";
-import { Button, Select } from "@chakra-ui/react";
+import { Button, Select, useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 function DefaultInventry({ el, index }) {
     const [select, setSelect] = useState('');
+    const toast = useToast()
 
     const handle_process = (event) => {
       setSelect(event.target.value);
@@ -22,7 +23,15 @@ function DefaultInventry({ el, index }) {
         try {
           let res = await axios.put(`https://kodertroop-server.onrender.com/todo/imp/${el._id}`,data)
           
-          alert(res.data)
+          toast({
+            title: `${res.data}`,
+    
+            status: 'success',
+            duration: 4000,
+            isClosable: true,
+            position: 'top',
+    
+          })
         } catch (error) {
           console.log(error)
         }

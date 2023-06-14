@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalFooter,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
@@ -17,13 +18,22 @@ import React from "react";
 function DeleteModel({post_Id}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const toast = useToast()
 
   const handleDelete = async () => {
     try {
         const res = await axios.delete(
           `https://kodertroop-server.onrender.com/todo/delete/${post_Id}`
         );
-        alert(res.data);
+        toast({
+          title: `${res.data}`,
+  
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top-right',
+  
+        })
       } catch (error) {
         console.log(error);
       }

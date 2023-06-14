@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import { Button, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormLabel, Input, useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 
@@ -8,10 +8,10 @@ const initState = {
   description: "",
 };
 
-function Editfrom({post_Id}) {
+function Editfrom({post_Id,onClose}) {
   const [formData, setFormData] = useState(initState);
 
-
+  const toast = useToast()
   const result = Object.entries(formData)
   .filter(([key, value]) => value !== "")
   .reduce((acc, [key, value]) => {
@@ -32,8 +32,16 @@ function Editfrom({post_Id}) {
         );
       
   
-        alert(res.data);
-        window.location.reload(false);
+        toast({
+          title: `${res.data}`,
+  
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top-left',
+  
+        })
+        onClose()
       } catch (err) {
         console.log(err);
       }

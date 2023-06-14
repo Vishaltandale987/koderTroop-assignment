@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormLabel, Input, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,7 @@ function Add_form({ close }) {
   const navigate = useNavigate();
   // Post request FE to DealersModel
   let userId = localStorage.getItem("id");
+  const toast = useToast()
 
   const handle_post_submiting_from = async () => {
 
@@ -33,7 +34,15 @@ function Add_form({ close }) {
           formData
         );
 
-        alert(res.data);
+        toast({
+          title: `${res.data}`,
+  
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+  
+        })
       } catch (err) {
         console.log(err);
       }

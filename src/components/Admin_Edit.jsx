@@ -29,7 +29,7 @@ function Admin_Edit({post_Id}) {
           <ModalCloseButton />
           <ModalBody>
          
-            <Editfrom post_Id={post_Id}/>
+            <Editfrom post_Id={post_Id} onClose={onClose}/>
           </ModalBody>
         </ModalContent>
       </Modal>
