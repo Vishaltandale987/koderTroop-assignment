@@ -5,7 +5,7 @@ import { Button, Select } from "@chakra-ui/react";
 import axios from "axios";
 
 function DefaultInventry({ el, index }) {
-    const [select, setSelect] = useState('TODO');
+    const [select, setSelect] = useState('');
 
     const handle_process = (event) => {
       setSelect(event.target.value);
@@ -17,14 +17,17 @@ function DefaultInventry({ el, index }) {
         imp:select
       }
 
-      console.log(data)
+      if(select !== ""){
 
-      try {
-        let res = await axios.put(`https://kodertroop-server.onrender.com/todo/imp/${el._id}`,data)
-
-        alert(res.data)
-      } catch (error) {
-        console.log(error)
+        try {
+          let res = await axios.put(`https://kodertroop-server.onrender.com/todo/imp/${el._id}`,data)
+          
+          alert(res.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }else{
+        alert("Please select task status frist.")
       }
      
     }

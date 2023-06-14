@@ -1,23 +1,35 @@
 import React, { useState } from "react";
 import { Button, FormLabel, Input } from "@chakra-ui/react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+let userId = localStorage.getItem("id");
+
 
 const initState = {
   task: "",
   description: "",
-
+  userID:userId
 };
 
 function Add_form({ close }) {
   const [formData, setFormData] = useState(initState);
-
+  const navigate = useNavigate();
   // Post request FE to DealersModel
+  let userId = localStorage.getItem("id");
 
   const handle_post_submiting_from = async () => {
+
+
+
+  if(userId !== null){
+
+  
+
     if (formData.description !== "" && formData.task !== "") {
       try {
         let res = await axios.post(
-          `https://kodertroop-server.onrender.com/todo/add`,
+          `https://koder-troop-server.vercel.app/todo/add`,
           formData
         );
 
@@ -26,10 +38,17 @@ function Add_form({ close }) {
         console.log(err);
       }
     } else {
+
       alert("Fill all details.");
     }
 
     close();
+  }else{
+    alert("Please login frist.")
+    close();
+    navigate("/userSignup");
+  }
+
   };
 
   return (
